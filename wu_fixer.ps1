@@ -1,6 +1,6 @@
 ## Arthur Vaccario - Windows Update Fixer v1.3
 ## Last update 04/08/2024 (Initial) Development
-
+##
 # Function to prompt for continue or quit
 function Prompt-ContinueOrQuit {
     param([string]$message)
