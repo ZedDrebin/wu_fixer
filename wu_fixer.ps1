@@ -12,11 +12,11 @@ function Prompt-ContinueOrQuit {
 
     switch ($key.VirtualKeyCode) {
         # Space bar
-        32 { Write-Host "Skipping..." -ForegroundColor Cyan }
+        0x20 { Write-Host "Skipping..." -ForegroundColor Cyan }
         # 'Q' key
-        81 { Write-Host "Quitting the script..." -ForegroundColor Red; exit }
+        0x51 { Write-Host "Quitting the script..." -ForegroundColor Red; exit }
         # Enter
-        13 { }
+        0x0D { }
         default { Write-Host "Invalid key. Please press Enter, Space bar, or 'q'." -ForegroundColor Red; Prompt-ContinueOrQuit $message }
     }
 }
