@@ -1,8 +1,7 @@
-## Arthur Vaccario - Windows Update Fixer v1.4
- ## Last update 04/08/2024 (Initial) Development
+## Arthur Vaccario - Windows Update Fixer v1.4.1
+## Last update 04/08/2024 (Initial) Development
 ##
 
-# Function to prompt for continue or quit
 function Prompt-ContinueOrQuit {
     param([string]$message)
     Write-Host $message -ForegroundColor Green
@@ -49,12 +48,12 @@ if (-not (Prompt-ContinueOrQuit "Re-start Windows Update Services?")) {
 }
 
 # Running system file checker
-if (-not (Prompt-ContinueOrQuit "Run System File Checker"))) {
+if (-not (Prompt-ContinueOrQuit "Run System File Checker")) {
     sfc /scannow
 }
 
 # Running DISM tool to repair Windows image
-if (-not (Prompt-ContinueOrQuit "Run The Deployment Image Servicing and Management Tool (DISM)"))) {
+if (-not (Prompt-ContinueOrQuit "Run The Deployment Image Servicing and Management Tool (DISM)")) {
     DISM /Online /Cleanup-Image /RestoreHealth
 }
 #end
