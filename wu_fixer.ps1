@@ -1,4 +1,4 @@
-## Arthur Vaccario - Windows Update Fixer v1.2 
+## Arthur Vaccario - Windows Update Fixer v1.3
 ## Last update 04/08/2024 (Initial) Development
 
 # Function to prompt for continue or quit
@@ -20,6 +20,7 @@ function Prompt-ContinueOrQuit {
         default { Write-Host "Invalid key. Please press Enter, Space bar, or 'q'." -ForegroundColor Red; Prompt-ContinueOrQuit $message }
     }
 }
+clear
 # Run the Windows Update troubleshooter
 Prompt-ContinueOrQuit "Windows Update Troubleshooter"
 msdt.exe /id WindowsUpdateDiagnostic
