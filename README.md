@@ -1,4 +1,4 @@
-# README.md v1
+README.md
 <h1>Windows Update Fixer</h1>
 Run this PowerShell script in an elevated (Admin) prompt.<br>
 It will run the Windows Update Troubleshooter then stop Windows Updates services,<br>
