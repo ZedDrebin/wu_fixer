@@ -32,11 +32,13 @@ if (-not (Prompt-ContinueOrQuit "Stop Windows Update Services?")) {
     Stop-Service -Name cryptSvc -Force
     Stop-Service -Name bits -Force
     Stop-Service -Name msiserver -Force
+	Write-Host "Services stopped. Be mindful of any error messages."
 }
 
 # Renaming the SoftwareDistribution folder
 if (-not (Prompt-ContinueOrQuit "Rename SoftwareDistribution Directory?")) {
     Rename-Item -Path C:\Windows\SoftwareDistribution -NewName SoftwareDistribution.old
+	Write-Host "Rename Function complete."
 }
 
 # Starting services
@@ -45,6 +47,7 @@ if (-not (Prompt-ContinueOrQuit "Re-start Windows Update Services?")) {
     Start-Service -Name cryptSvc
     Start-Service -Name bits
     Start-Service -Name msiserver
+	Write-Host "Services Restarted. Be mindful of any error messages."
 }
 
 # Running system file checker
