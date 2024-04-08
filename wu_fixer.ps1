@@ -1,11 +1,12 @@
-## Arthur Vaccario - Windows Update Fixer v1.0 
+## Arthur Vaccario - Windows Update Fixer v1.2 
 ## Last update 04/08/2024 (Initial) Development
+
 # Function to prompt for continue or quit
 function Prompt-ContinueOrQuit {
     param([string]$message)
-    Write-Host $message -ForegroundColor Yellow
-    Write-Host "Press Enter to continue, Space bar to skip, or 'q' to quit." -ForegroundColor Green
-
+    Write-Host $message -ForegroundColor Green
+    Write-Host "Press Enter to continue, Space bar to skip, or 'q' to quit." -ForegroundColor Yellow
+ 
     # Wait for key press
     $key = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
@@ -20,32 +21,33 @@ function Prompt-ContinueOrQuit {
     }
 }
 # Run the Windows Update troubleshooter
-Prompt-ContinueOrQuit "Press Enter to run the Windows Update Troubleshooter, Spacebar to skip or 'q' to quit."
+Prompt-ContinueOrQuit "Windows Update Troubleshooter"
 msdt.exe /id WindowsUpdateDiagnostic
 
 
-Prompt-ContinueOrQuit "Press Enter to Stop Windows Update Services, Spacebar to skip or 'q' to quit."
 # Stopping services
+Prompt-ContinueOrQuit "Windows Update Services"
 Stop-Service -Name wuauserv -Force
 Stop-Service -Name cryptSvc -Force
 Stop-Service -Name bits -Force
 Stop-Service -Name msiserver -Force
-Prompt-ContinueOrQuit "Services Stopped. Press Enter to Rename SoftwareDistribution Directory, Spacebar to skip or 'q' to quit."
+Prompt-ContinueOrQuit "Rename SoftwareDistribution Directory"
 
 # Renaming the SoftwareDistribution folder
 Rename-Item -Path C:\Windows\SoftwareDistribution -NewName SoftwareDistribution.old
-Prompt-ContinueOrQuit "SoftwareDistribution folder renamed. Press Enter to Re-start Services, Spacebar to skip or 'q' to quit."
+Prompt-ContinueOrQuit "Re-start Services"
 
 # Starting services
 Start-Service -Name wuauserv
 Start-Service -Name cryptSvc
 Start-Service -Name bits
 Start-Service -Name msiserver
-Prompt-ContinueOrQuit "Services started. Press Enter to Run System File Checker, Spacebar to skip or 'q' to quit."
 
 # Running system file checker
+Prompt-ContinueOrQuit "Run System File Checker"
 sfc /scannow
-Prompt-ContinueOrQuit "System File Checker Complete. Press Enter to Run The Deployment Image Servicing and Management Tool (DISM), Spacebar to skip or 'q' to quit."
-# Running DISM tool to repair Windows image
-DISM /Online /Cleanup-Image /RestoreHealth
 
+# Running DISM tool to repair Windows image
+Prompt-ContinueOrQuit "Run The Deployment Image Servicing and Management Tool (DISM)"
+DISM /Online /Cleanup-Image /RestoreHealth
+#end
